@@ -1,0 +1,6 @@
+/.lake
+echo "/build
+/lake-manifest.json
+/lakefile.lean
+/lake-packages
+" > .gitignore
