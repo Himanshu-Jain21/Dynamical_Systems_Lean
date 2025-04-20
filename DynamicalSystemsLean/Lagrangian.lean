@@ -71,32 +71,23 @@ theorem lagrange_equation
     deriv (fun t' => deriv (fun v' => Lagrangian m k (x t') v') (deriv x t')) t -
     deriv (fun x' => Lagrangian m k x' (deriv x t)) (x t) = 0 := by
 
-  -- Define the function f
   let f := fun t' => deriv (fun v' => Lagrangian m k (x t') v') (deriv x t')
-
-  -- Show pointwise equality with g(t') = m * deriv x t'
   let g := fun t' => m * deriv x t'
 
   have h_eq : f = g := by
     apply funext
     intro t'
     exact dL_dv m k (x t') (deriv x t')
-
-  -- Derive both sides using equality of functions
   have h1 : deriv f t = deriv g t := by rw [h_eq]
 
-  -- Simplify deriv g t = m * deriv (deriv x) t
   have h1' : deriv g t = m * deriv (deriv x) t := by
     simp [g, deriv_const_mul, h_dv]
 
-  -- Combine the two steps
   have h_dLdv_dt : deriv f t = m * deriv (deriv x) t := by
     rw [h1, h1']
 
-  -- Now compute dL/dx using the earlier theorem
   have h_dLdx : deriv (fun x' => Lagrangian m k x' (deriv x t)) (x t)
               = -k * x t := dL_dx m k (x t) (deriv x t)
 
-  -- Finish the calculation
   rw [h_dLdv_dt, h_dLdx, h_newton]
   simp
