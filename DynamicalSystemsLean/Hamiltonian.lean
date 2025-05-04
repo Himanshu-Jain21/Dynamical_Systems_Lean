@@ -53,7 +53,6 @@ dx/dt = ∂H/∂p
 dp/dt = -∂H/∂x
 -/
 theorem hamiltons_equations
-    (x p : ℝ → ℝ) (t : ℝ)
     (h_eq1 : deriv x t = (1/m)* p t)  -- Assuming Newton's Laws
     (h_eq2 : deriv p t = -k * x t) :  -- Assuming Newton's Laws
     deriv x t = deriv (fun p' => Hamiltonian m k (x t) p') (p t)

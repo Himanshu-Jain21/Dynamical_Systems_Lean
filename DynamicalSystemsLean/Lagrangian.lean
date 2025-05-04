@@ -12,7 +12,7 @@ variable (t : ℝ) -- time
 /-!
 Lagrangian of the system is L = 1/2 mv^2 - 1/2 kx^2
 -/
-noncomputable def Lagrangian (m k : ℝ) (x : ℝ) (v : ℝ) : ℝ :=
+noncomputable def Lagrangian (m k : ℝ) (x v : ℝ) : ℝ :=
   (1 / 2) * m * v ^ 2 - (1 / 2) * k * x ^ 2
 
 /-!
@@ -65,7 +65,6 @@ Proving Lagrange's equation (assuming Newton's Laws)
 d(∂L/∂v)/dt = ∂L/∂x
 -/
 theorem lagrange_equation
-    (t : ℝ) (x : ℝ → ℝ)
     (h_dv : DifferentiableAt ℝ (deriv x) t)
     (h_newton : m * deriv (deriv x) t = -k * x t) :
     deriv (fun t' => deriv (fun v' => Lagrangian m k (x t') v') (deriv x t')) t -
